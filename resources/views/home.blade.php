@@ -9,9 +9,9 @@
     <div class="section">
       <h2 class="title section text-center">Dashboard</h2>
       
-      @if (session('status'))
+      @if (session('notification'))
       <div class="alert alert-success" role="alert">
-        {{ session('status') }}
+        {{ session('notification') }}
       </div>
       @endif
       <ul class="nav nav-pills nav-pills-icons" role="tablist">
@@ -82,7 +82,16 @@
                       </tr>
                       @endforeach
                   </tbody>
-             </table>
+        </table>
+
+         <div class="text-center">
+              <form method="post" action=" {{ url('/order') }}">
+                @csrf
+                  <button type='submit' class="btn btn-primary btn-round">
+                      <i class="material-icons">done</i> Realizar Pedido
+                  </button>
+              </form>
+         </div>
     </div>
     
   </div>

@@ -38,7 +38,7 @@
                         <input type="text" class="form-control" name="description" value="{{$product->description}}">
                       </div>
                <div class="form-group label-floating">
-                        <label class="control-label">Descripcion corta</label>
+                        <label class="control-label">Descripcion larga</label>
                <textarea class="form-control" rows="5" name="long_description">{{$product->long_description}}</textarea>
                </div>
                <div>

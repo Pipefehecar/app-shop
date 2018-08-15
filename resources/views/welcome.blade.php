@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','App Shop | Inicio')
+@section('title','Opendoors | Inicio')
 
 @section('body-class','landing-page sidebar-collapse')
 
@@ -9,11 +9,7 @@
     .team .row .cold-md-4{
         margin-bottom: 5em;
     }
-    
-    div h4{
-       color: yellow;
-    }
-
+  
     .row {
       display: -webkit-box;
       display: -webkit-flex;
@@ -29,12 +25,12 @@
 @endsection
 
 @section('content')
-  <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset ('img/profile_city.jpg') }}">
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('{{asset ('img/santa_marta.jpg') }}">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h1 class="title">Bienvenido a App Shop.</h1>
-          <h4>Realiza pedidos en linea y te contactaremos para realizar la entrega</h4>
+          <h1 class="title">Bienvenido a Opendoors, tu inmobiliaria amiga.</h1>
+          <h4>Dejanos tu contacto y te ayudaremos a encontrar o vender el inmueble que tanto deseas</h4>
           <br>
           <a href="https://www.youtube.com/watch?v=ZZPZOhkbngo" target="_blank" class="btn btn-danger btn-raised btn-lg">
             <i class="fa fa-play"></i> ¿Como funciona?
@@ -45,7 +41,7 @@
   </div>
   <div class="main main-raised">
     <div class="container">
-      <div class="section text-center">
+      {{--<div class="section text-center">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
             <h2 class="title">Let&apos;s talk product</h2>
@@ -83,7 +79,7 @@
             </div>
           </div>
         </div>
-      </div>
+       </div>}} --}}
       <div class="section text-center">
         <h2 class="title">Inmuebles Disponibles</h2>
         <div class="team"> 
@@ -91,17 +87,23 @@
             @foreach ($products as $product)
             <div class="col-md-4">
               <div class="team-player">
-                <div class="card card-plain">
-                  <div class="col-md-6 ml-auto mr-auto">
-                    <img src="{{$product->featured_image_url}}" alt="Imagen no disponible" class="img-raised rounded-circle img-fluid">
-                  </div>
+                <div class="card" style="width: 20rem;">
+                 
+                    <img src="{{$product->featured_image_url}}" alt="Imagen no disponible" class="card-img-top">
+                  
                   <h4 class="card-title">
-                    <a href="{{ url ('/products/'.$product->id )}}"> {{ $product->nombre }} </a>
+                    <a href="{{ url ('/products/'.$product->id )}}"> {{ $product->title }} </a>
                     <br>
                     <small class="card-description text-muted">{{$product->category->name}}</small>
                   </h4>
                   <div class="card-body">
-                    <p class="card-description">{{ $product->description }}</p>
+                    <div class="row">
+                        <div class="text-left"><p class="h5">Hab: {{ $product->rooms }}</p></div>
+                        <hr>
+                        <div><p class="h5">Baños: {{ $product->rooms }}</p></div>
+                        <hr>
+                    </div>
+                    <div class="text-left"><p class="h4 title">Precio: ${{ $product->price }}</p></div>
                   </div>
                  
                 </div>

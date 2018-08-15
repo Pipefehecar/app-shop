@@ -15,10 +15,17 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('title');
+            $table->integer('rooms');//habitaciones
+            $table->integer('bathrooms');//baños
+            $table->integer('parking')->nullable();//estacionamientos
+            $table->integer('area');//mt2
+            $table->integer('stratum');//estrato
             $table->string('description');
             $table->text('long_description')->nullable();
-            $table->float('price');    
+            $table->string('address');
+            $table->enum('rent_or_sale', ['venta', 'arriendo']);
+            $table->bigInteger('price');//pesos 
 
             // FK
             $table->integer('category_id')->unsigned()->nullable();

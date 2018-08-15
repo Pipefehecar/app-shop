@@ -13,6 +13,8 @@
 
 Route::get('/','TestController@welcome');
 
+Route::get('/contact','TestController@contact');
+
 Route::get('/prueba',function(){
 	return "hola soy una ruta de pruebaa";
 });
@@ -23,6 +25,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/{id}', 'ProductController@show');
 Route::post('/cart', 'CartDetailController@store');
 Route::delete('/cart','CartDetailController@destroy');
+
+Route::post('/order','CartController@update');
+
+
 
 Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(function(){
 		//CR

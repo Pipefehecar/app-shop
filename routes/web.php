@@ -22,11 +22,11 @@ Route::get('/prueba',function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/products/{id}', 'ProductController@show');
-Route::post('/cart', 'CartDetailController@store');
-Route::delete('/cart','CartDetailController@destroy');
+Route::get('/publications/{id}', 'ProductController@show');
+// Route::post('/cart', 'CartDetailController@store');
+//Route::delete('/cart','CartDetailController@destroy');
 
-Route::post('/order','CartController@update');
+//Route::post('/order','CartController@update');
 
 
 

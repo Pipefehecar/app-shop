@@ -21,6 +21,19 @@
       display: flex;
       flex-direction: column;
     }
+    .flex-parent{
+      display: -ms-flex;
+      display: -webkit-flex;
+      display: flex;
+   }
+
+  .flex-child{
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
   </style>
 @endsection
 
@@ -84,26 +97,57 @@
         <h2 class="title">Inmuebles Disponibles</h2>
         <div class="team"> 
           <div class="row">
-            @foreach ($products as $product)
+            @foreach ($publications as $publication)
             <div class="col-md-4">
               <div class="team-player">
                 <div class="card" style="width: 20rem;">
                  
-                    <img src="{{$product->featured_image_url}}" alt="Imagen no disponible" class="card-img-top">
+                    <img src="{{$publication->featured_image_url}}" alt="Imagen no disponible" class="card-img-top">
                   
                   <h4 class="card-title">
-                    <a href="{{ url ('/products/'.$product->id )}}"> {{ $product->title }} </a>
+                    <a href="{{ url ('/publications/'.$publication->id )}}"> {{ $publication->title }} </a>
                     <br>
-                    <small class="card-description text-muted">{{$product->category->name}}</small>
+                    <small class="card-description text-muted">{{$publication->type->name}} en {{$publication->rent_or_sale}}</small>
                   </h4>
                   <div class="card-body">
-                    <div class="row">
-                        <div class="text-left"><p class="h5">Hab: {{ $product->rooms }}</p></div>
-                        <hr>
-                        <div><p class="h5">Baños: {{ $product->rooms }}</p></div>
-                        <hr>
-                    </div>
-                    <div class="text-left"><p class="h4 title">Precio: ${{ $product->price }}</p></div>
+                     <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABCUlEQVRIS+3VvUoDQRTF8V8QEUsRO7EXfIQggiCCjQg+gNhoZZXOxtiJLyBYWFuEFBZ+YSmCpfgSYiGCrcrIKJshOJsNEYRsNcs9c/5z7mWYmgF/tQH7GwKyHR62qFSLPnCEray6giDMIAXMYh4PuK3g2bElBSzjDCNR1cBhP5AUcI3FguELJgr/09iICSfxhBucxHXxLLtYTQEXWCqonjGFcTSxg9Euid5iPaR9j/VjbKaABZxjLIq2cYU25kq06hLreEVXQPCYQT0OOQx6JaYo4f8lecT9b4CyRjldR4KcuHL9ewaVDXIb/wxwiv3caXqs72EtJLhDCwc9GuTkPxctJ+yr/v8fnE8BYzapIL3JFwAAAABJRU5ErkJggg==" alt="">: {{$publication->rooms}}</div></th>
+
+              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACBElEQVRIS+2VPWhUQRDH/7Ozuy82ohaSQi0Ui4Bpowh+dAERkTQpbGxFO0FE0F5JI3ZiI9qLyIlgF1DwAwQbP0CUIDaCGBG8ezPzVjZ3p3fh4r07Y+d2b99/5zf7n91ZQs3hKT6AS7Mr8ooamsqjdZZSHVHW/AcMdWrdLZrAxE5hOwdgGgATMAVgYyeT5QS8zuUG8DIYX26i+X5QlgOLXKDYbVw9AbB56Nbagi9sbqaF1rvV+oGAwOF2Ak7UDL4iI+CmmJysBfA+LFDCtlEAiWhJtcyW9o3a92AUWK92GGDSk7/mkrtUonzlnT8PQLXShRjjdLJ0UUxOA/i8VgJ/BMQY91SWFkFpXlUfeor3gEo06RwzHyG4W2xufwutN2MBxrWltkXe+4Ne/VITzQ95UYFiF4Gq7pnP3+ZtUlUfjbUDz+E7AQ0xmc8BnHMviLg0k73tBujvwNEhNdkyFiCEMCPiPwE/PuYAIYR9+faKyNN2wA07QtCtIvJ8LMC/rkFuEwbg2xDQps7/r4N0ax7Tjt/LZnK4u9BTvA9UpSY93p1jDo9zM+zWpfZNZo5zgLXMrPEL4PxZAqlUcvU3oDgGJDIr7460g/XwP8cY1ir+mjMQwMzXATdlJgd6Cb29qHeeOeS345mZnKlVg+DCqeRou2p5oQ/Q04v65n28Qim9FZMbqwE/AXAt2BlalNKlAAAAAElFTkSuQmCC" alt="">: {{$publication->bathrooms}}</div></th>
+
+              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAC4klEQVRIS72VT0gUYRjGn/ebXS3DW+DB3G92dzYoyP54kuhYhyyhk0meCi1KULBOBYGHOhRUdiqF6BL9uwgVVNQhoaBDgWSlO7szs3oRFsJCUnfme2PHVtZt11k9NLdhnuf5ffO+zzCEDVxGJNoFUh0MQZXsBMVE9LyiYC2u0dTkQGiRoLMpYH5DgJjUZwTQmAco8IwgegsPLgg7QGgtgJVSi2UBsVgsQkrtLD2hIvpmWZZTDCBW9+dd9+zmUG2XJ/hxSOEyCP0+vBygpaUlPJfNfgFoKzz1qwBhEkwa7pq2fbUUwF7NJYTcaYBPQYksBI9WBMSlHABz96b6+uaJiYmlcnMuBeSEOBPy6JCr8asw4x4Dx8sCotFoA7neFAR1ph3nRaUllgI0zxtwQzV3FHiPAOIVd2BIOQxFjea0fXithlQe0WrXqh0YUu5Tit+HQ9ruScuarBbACjZpGAej/Z9SFC85IeUYQ3w0HWsgqN+GlEmAjCAdgB9+TeO63kGuGlI1oe3pdHouyGhI2QqmoxAQFbUKzMSvKd95kcuNgegDoD0NCg98LjjnAi9t217IaynepFskoAca1yEg8PWk41zwAYbUXQBakd8rua8merWH1SMzk/G/hRWAAlJhQW2TlmUmInovE24GJSulfgpNtJu2/c6IRI8o9p4IIWpRDsBMPamMNVwINXQ9X71da0GYMJSy7b6CJi71BwR0lgUQoz+ZsW/9FZMh5VRwFXnEdJzuokON+t9D+RFxVrA4qRR9Fxr3AXyuihEtEWm9Grw3HtExAl3Lj70sIChsPc8JeJh07E5/ydFt+idNw971BARr+aLpOFd8QHNDw5aFujrDY75NjAO+mamdBE8HB+W1fIJB530tYRDKr+jXgnfljxaX0WcEbvPzPS2RmkmZ1QAMXe8H48aylrpNxxop9v0/QELXTzPTQSherFv63TM+OztfzRvEI5H9RGJ5ROBB03E+F/v+AF+7d5EPPRIiAAAAAElFTkSuQmCC" alt="">: {{$publication->parking}}</div></th>
+             
+               
+            </tr>
+          </thead>
+      </table> 
+
+                    @switch($publication->rent_or_sale)
+                        @case("venta")
+                            <div class="row flex-parent">
+                              <i class="im im-coin flex-child col-md-1"></i>
+                              <div class="flex-child col-md-9"><p class="h4 title text-left">{{ $publication->sale_price}}</p></div>
+                            </div>
+                            @break
+
+                        @case("arriendo")
+                            <div class="row flex-parent">
+                              <i class="im im-coin flex-child col-md-1"></i>
+                              <div class="flex-child col-md-9"><p class="h4 title text-left">{{ $publication->rent_price}}</p></div>
+                            </div>
+                            @break
+
+                        @default
+                            <div class="row flex-parent">
+                              <i class="im im-coin flex-child col-md-1"></i>
+                              <div class="flex-child col-md-9"><p class="h4 title text-left">{{ $publication->rent_price}}</p></div>
+                              <div class="flex-child col-md-9"><p class="h4 title text-left">{{ $publication->sale_price}}</p></div>
+                            </div>
+                    @endswitch
+                    
+                    
                   </div>
                  
                 </div>
@@ -111,7 +155,7 @@
             </div>
             @endforeach
           </div>
-         <div class="text-center"> {{ $products->links() }}</div>
+         <div class="text-center"> {{ $publications->links() }}</div>
           
         </div>
       </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsTable extends Migration
+class CreatePublicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('publications', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
             $table->string('title');
             $table->integer('rooms');//habitaciones
             $table->integer('bathrooms');//baños
@@ -24,12 +24,13 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->text('long_description')->nullable();
             $table->string('address');
-            $table->enum('rent_or_sale', ['venta', 'arriendo']);
-            $table->bigInteger('price');//pesos 
+            $table->enum('rent_or_sale', ['venta', 'arriendo', 'venta y arriendo']);
+            $table->bigInteger('rent_price')->nullable();//pesos 
+            $table->bigInteger('sale_price')->nullable();//pesos 
 
             // FK
-            $table->integer('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->integer('type_id')->unsigned()->nullable();
+            $table->foreign('type_id')->references('id')->on('types');
 
 
             $table->timestamps();
@@ -43,6 +44,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('publications');
     }
 }

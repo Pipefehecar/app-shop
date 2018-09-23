@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductImage extends Model
+class PublicationImage extends Model
 {
-    //$productImage->product
-    public function product(){
-    	return $this->belongsTo(Product::class);
+    //$publicationImage->publication
+    public function publication(){
+    	return $this->belongsTo(Publication::class);
     }
     public function getUrlAttribute(){//esto es un assesor de campos(atributos) calculados
     	if(substr($this->image,0,4 )=="http"){
@@ -16,7 +16,7 @@ class ProductImage extends Model
     		return $this->image;
     	}
    		
-   		return '/images/products/'.$this->image; 
+   		return '/images/publication/'.$this->image; 
     }
 
 }

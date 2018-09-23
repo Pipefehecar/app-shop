@@ -30,7 +30,7 @@
         </li>
       </ul>
       <hr>
-        <p>Tu carrito de compra presenta {{ auth()->user()->cart->details->count() }}  </p>
+        <p>Tu carrito de compra presenta   </p>
     
         <table class="table">
                   <thead>
@@ -47,50 +47,12 @@
                       </tr>
                   </thead>
                   <tbody>
-                     @foreach(auth()->user()->cart->details as $detail)
-                      <tr>
-                          <td>
-                            <img src="{{$detail->product->featured_image_url}}" height="75">
-                          </td>
-                       
-                          <td>
-                            <a href="{{ url('/products/'.$detail->product->id) }}" target="_blank">
-                              {{$detail->product->nombre}}</a>
-                          </td>
-                         
-                          
-                          <td >${{$detail->product->price}}</td>
-                          <td class="text-center">{{ $detail->quantity }}</td>
-                          <td class="text-center">${{ $detail->quantity *$detail->product->price }} </td>
-                          <td class="td-actions text-right">
-                             
-                              <form method="post" action="{{ url('/cart')}}">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <input type="hidden" name="cart_detail_id" value="{{$detail->id}}">
-                                     <a href="{{ url('/products/'.$detail->product->id) }}" 
-                                     target="_blank" rel="tooltip" title="Ver Producto" class="btn btn-info btn-fab btn-fab-mini btn-round">
-                                          <i class="fa fa-info"></i>
-                                          {{-- <i class="material-icons">visibility</i> --}}
-                                    </a>
-
-                                    <button type="submit"  rel="tooltip" title="Eliminar" class="btn btn-danger btn-fab btn-fab-mini btn-round">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                              </form>
-                          </td>
-                      </tr>
-                      @endforeach
+                     
                   </tbody>
         </table>
 
          <div class="text-center">
-              <form method="post" action=" {{ url('/order') }}">
-                @csrf
-                  <button type='submit' class="btn btn-primary btn-round">
-                      <i class="material-icons">done</i> Realizar Pedido
-                  </button>
-              </form>
+              
          </div>
     </div>
     

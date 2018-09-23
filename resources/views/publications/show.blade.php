@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Opendoors | '.$product->rent_or_sale.'s')
+@section('title','Opendoors | '.$publication->rent_or_sale.'s')
 @section('body-class','profile-page sidebar-collapse')
 @section('content')
 @section('styles')
@@ -34,8 +34,8 @@
     <div class="container">
       <div class="row flex-parent">
         <div class="name col-md-11">
-         <h3 class="title">{{$product->title}}</h3>
-          <h6>{{$product->category->name}} en {{$product->rent_or_sale}}</h6>
+         <h3 class="title">{{$publication->title}}</h3>
+          <h6>{{$publication->type->name}} en {{$publication->rent_or_sale}}</h6>
         </div>
         <div class="col-md-1 flex-child">
           <form action="{{ url('/')}}" method="get">
@@ -60,15 +60,32 @@
       <table class="table table-bordered">
           <thead>
             <tr>
-              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABCUlEQVRIS+3VvUoDQRTF8V8QEUsRO7EXfIQggiCCjQg+gNhoZZXOxtiJLyBYWFuEFBZ+YSmCpfgSYiGCrcrIKJshOJsNEYRsNcs9c/5z7mWYmgF/tQH7GwKyHR62qFSLPnCEray6giDMIAXMYh4PuK3g2bElBSzjDCNR1cBhP5AUcI3FguELJgr/09iICSfxhBucxHXxLLtYTQEXWCqonjGFcTSxg9Euid5iPaR9j/VjbKaABZxjLIq2cYU25kq06hLreEVXQPCYQT0OOQx6JaYo4f8lecT9b4CyRjldR4KcuHL9ewaVDXIb/wxwiv3caXqs72EtJLhDCwc9GuTkPxctJ+yr/v8fnE8BYzapIL3JFwAAAABJRU5ErkJggg==" alt=""> Habitaciones: {{$product->rooms}}</div></th>
-              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACBElEQVRIS+2VPWhUQRDH/7Ozuy82ohaSQi0Ui4Bpowh+dAERkTQpbGxFO0FE0F5JI3ZiI9qLyIlgF1DwAwQbP0CUIDaCGBG8ezPzVjZ3p3fh4r07Y+d2b99/5zf7n91ZQs3hKT6AS7Mr8ooamsqjdZZSHVHW/AcMdWrdLZrAxE5hOwdgGgATMAVgYyeT5QS8zuUG8DIYX26i+X5QlgOLXKDYbVw9AbB56Nbagi9sbqaF1rvV+oGAwOF2Ak7UDL4iI+CmmJysBfA+LFDCtlEAiWhJtcyW9o3a92AUWK92GGDSk7/mkrtUonzlnT8PQLXShRjjdLJ0UUxOA/i8VgJ/BMQY91SWFkFpXlUfeor3gEo06RwzHyG4W2xufwutN2MBxrWltkXe+4Ne/VITzQ95UYFiF4Gq7pnP3+ZtUlUfjbUDz+E7AQ0xmc8BnHMviLg0k73tBujvwNEhNdkyFiCEMCPiPwE/PuYAIYR9+faKyNN2wA07QtCtIvJ8LMC/rkFuEwbg2xDQps7/r4N0ax7Tjt/LZnK4u9BTvA9UpSY93p1jDo9zM+zWpfZNZo5zgLXMrPEL4PxZAqlUcvU3oDgGJDIr7460g/XwP8cY1ir+mjMQwMzXATdlJgd6Cb29qHeeOeS345mZnKlVg+DCqeRou2p5oQ/Q04v65n28Qim9FZMbqwE/AXAt2BlalNKlAAAAAElFTkSuQmCC" alt=""> Baños: {{$product->bathrooms}}</div></th>
-              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAC4klEQVRIS72VT0gUYRjGn/ebXS3DW+DB3G92dzYoyP54kuhYhyyhk0meCi1KULBOBYGHOhRUdiqF6BL9uwgVVNQhoaBDgWSlO7szs3oRFsJCUnfme2PHVtZt11k9NLdhnuf5ffO+zzCEDVxGJNoFUh0MQZXsBMVE9LyiYC2u0dTkQGiRoLMpYH5DgJjUZwTQmAco8IwgegsPLgg7QGgtgJVSi2UBsVgsQkrtLD2hIvpmWZZTDCBW9+dd9+zmUG2XJ/hxSOEyCP0+vBygpaUlPJfNfgFoKzz1qwBhEkwa7pq2fbUUwF7NJYTcaYBPQYksBI9WBMSlHABz96b6+uaJiYmlcnMuBeSEOBPy6JCr8asw4x4Dx8sCotFoA7neFAR1ph3nRaUllgI0zxtwQzV3FHiPAOIVd2BIOQxFjea0fXithlQe0WrXqh0YUu5Tit+HQ9ruScuarBbACjZpGAej/Z9SFC85IeUYQ3w0HWsgqN+GlEmAjCAdgB9+TeO63kGuGlI1oe3pdHouyGhI2QqmoxAQFbUKzMSvKd95kcuNgegDoD0NCg98LjjnAi9t217IaynepFskoAca1yEg8PWk41zwAYbUXQBakd8rua8merWH1SMzk/G/hRWAAlJhQW2TlmUmInovE24GJSulfgpNtJu2/c6IRI8o9p4IIWpRDsBMPamMNVwINXQ9X71da0GYMJSy7b6CJi71BwR0lgUQoz+ZsW/9FZMh5VRwFXnEdJzuokON+t9D+RFxVrA4qRR9Fxr3AXyuihEtEWm9Grw3HtExAl3Lj70sIChsPc8JeJh07E5/ydFt+idNw971BARr+aLpOFd8QHNDw5aFujrDY75NjAO+mamdBE8HB+W1fIJB530tYRDKr+jXgnfljxaX0WcEbvPzPS2RmkmZ1QAMXe8H48aylrpNxxop9v0/QELXTzPTQSherFv63TM+OztfzRvEI5H9RGJ5ROBB03E+F/v+AF+7d5EPPRIiAAAAAElFTkSuQmCC" alt=""> Garaje: {{$product->parking}}</div></th>
-              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACQklEQVRIS7XVS6hNcRQG8N/1yDvPkvJMkrwy8CxKniMTRpIUIWViIgkZKQZkqExkYCKhRCkDCSNEymPgcfMIIW830dLatc/unHOvo7vq1D77v/b61lrfWt+/TTdbWzfHVwboh4m4VwGdj+v/kEiNfwD0wGx8x3C8QU+8Qx+sxHn8xkh8wmcMzvPw751nrzAKP/AN7eUK+mIsHlaynYVb/1DBGDwv/LvCwQg8w4UKyHtsQ0fl/UzcaQQwsE6m0bZrGF05m4Pt2JztKI4bAgzBS3ysBIoqI8tl2I3TWI0tGI89+Vx817BFAXAks4qJCqKCvLDbWIcr2IUDGIoPmIDDCfoLk/CoXosKgHZswkVMyykKgOUZ/BxWYSu+ZKBT2JCTOA83WgFYgLWl9kW1MdphZYBOW3QWi7JFMSnHs0WR2ZoG47oeJ7LqIP8FHuNJeUyLFm2kZsPjfdGivQ0ABuUCBjexTzebtegSlmTQWLyD+bwC+7EjN/1QBtmXk1RwMBkPWuGgmKLp6FXa7sVJeAHQKQexsQtxP3XlaKlFOzPbYU0AIoG7zSo4hiAqLMTrcoXkk7nVhT5VK6jRrnokR6llCy0KkstSMQVn0ikmKHhp2KIA6Y8BuJrbWgaIqYjxjMwb2VLMTRmPzX6a8t5R3AdTU4OCvAgYd0ToedwLAR53QFgk8TN/cVeE/9f0D7+3mBHznz6vuyLX9bKOdoWkhJWf4/+4rODvYasAsSfFt8FRSEVhcaOFKv8XQBM6ao9araDLAH8AslqONrw7BlcAAAAASUVORK5CYII=" alt="">Area: {{$product->area}} </div></th>
+              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABCUlEQVRIS+3VvUoDQRTF8V8QEUsRO7EXfIQggiCCjQg+gNhoZZXOxtiJLyBYWFuEFBZ+YSmCpfgSYiGCrcrIKJshOJsNEYRsNcs9c/5z7mWYmgF/tQH7GwKyHR62qFSLPnCEray6giDMIAXMYh4PuK3g2bElBSzjDCNR1cBhP5AUcI3FguELJgr/09iICSfxhBucxHXxLLtYTQEXWCqonjGFcTSxg9Euid5iPaR9j/VjbKaABZxjLIq2cYU25kq06hLreEVXQPCYQT0OOQx6JaYo4f8lecT9b4CyRjldR4KcuHL9ewaVDXIb/wxwiv3caXqs72EtJLhDCwc9GuTkPxctJ+yr/v8fnE8BYzapIL3JFwAAAABJRU5ErkJggg==" alt=""> Habitaciones: {{$publication->rooms}}</div></th>
+              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACBElEQVRIS+2VPWhUQRDH/7Ozuy82ohaSQi0Ui4Bpowh+dAERkTQpbGxFO0FE0F5JI3ZiI9qLyIlgF1DwAwQbP0CUIDaCGBG8ezPzVjZ3p3fh4r07Y+d2b99/5zf7n91ZQs3hKT6AS7Mr8ooamsqjdZZSHVHW/AcMdWrdLZrAxE5hOwdgGgATMAVgYyeT5QS8zuUG8DIYX26i+X5QlgOLXKDYbVw9AbB56Nbagi9sbqaF1rvV+oGAwOF2Ak7UDL4iI+CmmJysBfA+LFDCtlEAiWhJtcyW9o3a92AUWK92GGDSk7/mkrtUonzlnT8PQLXShRjjdLJ0UUxOA/i8VgJ/BMQY91SWFkFpXlUfeor3gEo06RwzHyG4W2xufwutN2MBxrWltkXe+4Ne/VITzQ95UYFiF4Gq7pnP3+ZtUlUfjbUDz+E7AQ0xmc8BnHMviLg0k73tBujvwNEhNdkyFiCEMCPiPwE/PuYAIYR9+faKyNN2wA07QtCtIvJ8LMC/rkFuEwbg2xDQps7/r4N0ax7Tjt/LZnK4u9BTvA9UpSY93p1jDo9zM+zWpfZNZo5zgLXMrPEL4PxZAqlUcvU3oDgGJDIr7460g/XwP8cY1ir+mjMQwMzXATdlJgd6Cb29qHeeOeS345mZnKlVg+DCqeRou2p5oQ/Q04v65n28Qim9FZMbqwE/AXAt2BlalNKlAAAAAElFTkSuQmCC" alt=""> Baños: {{$publication->bathrooms}}</div></th>
+              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAC4klEQVRIS72VT0gUYRjGn/ebXS3DW+DB3G92dzYoyP54kuhYhyyhk0meCi1KULBOBYGHOhRUdiqF6BL9uwgVVNQhoaBDgWSlO7szs3oRFsJCUnfme2PHVtZt11k9NLdhnuf5ffO+zzCEDVxGJNoFUh0MQZXsBMVE9LyiYC2u0dTkQGiRoLMpYH5DgJjUZwTQmAco8IwgegsPLgg7QGgtgJVSi2UBsVgsQkrtLD2hIvpmWZZTDCBW9+dd9+zmUG2XJ/hxSOEyCP0+vBygpaUlPJfNfgFoKzz1qwBhEkwa7pq2fbUUwF7NJYTcaYBPQYksBI9WBMSlHABz96b6+uaJiYmlcnMuBeSEOBPy6JCr8asw4x4Dx8sCotFoA7neFAR1ph3nRaUllgI0zxtwQzV3FHiPAOIVd2BIOQxFjea0fXithlQe0WrXqh0YUu5Tit+HQ9ruScuarBbACjZpGAej/Z9SFC85IeUYQ3w0HWsgqN+GlEmAjCAdgB9+TeO63kGuGlI1oe3pdHouyGhI2QqmoxAQFbUKzMSvKd95kcuNgegDoD0NCg98LjjnAi9t217IaynepFskoAca1yEg8PWk41zwAYbUXQBakd8rua8merWH1SMzk/G/hRWAAlJhQW2TlmUmInovE24GJSulfgpNtJu2/c6IRI8o9p4IIWpRDsBMPamMNVwINXQ9X71da0GYMJSy7b6CJi71BwR0lgUQoz+ZsW/9FZMh5VRwFXnEdJzuokON+t9D+RFxVrA4qRR9Fxr3AXyuihEtEWm9Grw3HtExAl3Lj70sIChsPc8JeJh07E5/ydFt+idNw971BARr+aLpOFd8QHNDw5aFujrDY75NjAO+mamdBE8HB+W1fIJB530tYRDKr+jXgnfljxaX0WcEbvPzPS2RmkmZ1QAMXe8H48aylrpNxxop9v0/QELXTzPTQSherFv63TM+OztfzRvEI5H9RGJ5ROBB03E+F/v+AF+7d5EPPRIiAAAAAElFTkSuQmCC" alt=""> Garaje: {{$publication->parking}}</div></th>
+              <th scope="col" class="text-center"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACQklEQVRIS7XVS6hNcRQG8N/1yDvPkvJMkrwy8CxKniMTRpIUIWViIgkZKQZkqExkYCKhRCkDCSNEymPgcfMIIW830dLatc/unHOvo7vq1D77v/b61lrfWt+/TTdbWzfHVwboh4m4VwGdj+v/kEiNfwD0wGx8x3C8QU+8Qx+sxHn8xkh8wmcMzvPw751nrzAKP/AN7eUK+mIsHlaynYVb/1DBGDwv/LvCwQg8w4UKyHtsQ0fl/UzcaQQwsE6m0bZrGF05m4Pt2JztKI4bAgzBS3ysBIoqI8tl2I3TWI0tGI89+Vx817BFAXAks4qJCqKCvLDbWIcr2IUDGIoPmIDDCfoLk/CoXosKgHZswkVMyykKgOUZ/BxWYSu+ZKBT2JCTOA83WgFYgLWl9kW1MdphZYBOW3QWi7JFMSnHs0WR2ZoG47oeJ7LqIP8FHuNJeUyLFm2kZsPjfdGivQ0ABuUCBjexTzebtegSlmTQWLyD+bwC+7EjN/1QBtmXk1RwMBkPWuGgmKLp6FXa7sVJeAHQKQexsQtxP3XlaKlFOzPbYU0AIoG7zSo4hiAqLMTrcoXkk7nVhT5VK6jRrnokR6llCy0KkstSMQVn0ikmKHhp2KIA6Y8BuJrbWgaIqYjxjMwb2VLMTRmPzX6a8t5R3AdTU4OCvAgYd0ToedwLAR53QFgk8TN/cVeE/9f0D7+3mBHznz6vuyLX9bKOdoWkhJWf4/+4rODvYasAsSfFt8FRSEVhcaOFKv8XQBM6ao9araDLAH8AslqONrw7BlcAAAAASUVORK5CYII=" alt="">Area: {{$publication->area}} </div></th>
                <th scope="col" class="text-center"><div>
-                <img src="" alt="">Estrato: {{$product->stratum}} 
+                <img src="" alt="">Estrato: {{$publication->stratum}} 
               </div></th>
                <th scope="col" class="text-center"><div>
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACQUlEQVRIS53VX+iOZxgH8A8yilhNckArLUnagR1wgCIlZytHC2OTiHLAlCR/Sin5U8pqxayRI8rJ2oGUqJWtHSGFLE0JU3OgEEvfX/ezHk/P8/xev6ve3t73vu7re/35fq97lHabjkuYhus4g/N4VdzHYSVWYz4eYwUeNMON6gCYhdsYXTv/BxfL7y8xpXb2FnNwZ1CA+O3AoY4Emn9vx9E2364KKt9NOI6xHUBp2Rac6kpkOIC06Hts7AhwAlvx30gBvu3LrgSNz+mRAqzru1yCrsHZkQCEqiexfJhB/4INePQhQ56HXzF1QBYleBK5MQhNo4Hf8EmPCPdjfeP8KRbgfv3/Jos+wh/4vHH5Dc7hLg5gcfnEbS0+K/5/FpD4D1kTYCcOtmSeID9jDKLa0Def3I8GMujKvsORNoBJZZd83AIwvrQkvE/Qfdjb0cJn+BQvmhVsRgJ0kaEKOhxA7odVYeB7LbqGhR0A2Z5fF1VnTntKFV2b4DKW1QEm4t/S4zaM/zOqHWY/fVUybe6q15iMl1UGi3C1h/PZNRfKOt6NpZhdKvqpMKl5Pe/E7xXAIDunToxB5jG0QiqALnr2DTxzCFW7GLUNxyqAUC6OXfYDHpbDSmgzkfZk0a1qubgrmhq0gii1em+j0mQ+oQgsD1IE2LShV64C+AY/9lRQP8qd7KK0qM9S1bkKIBkexhJE0X2WloR1UWubhe5XkBn81RRKSp+LL8p3gGeUtR3gCC6Wt/g5nuBv3MNNZNndqj+h7wBZQWsZPAZf3QAAAABJRU5ErkJggg==" alt=""> Precio: ${{$product->price}} 
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACQUlEQVRIS53VX+iOZxgH8A8yilhNckArLUnagR1wgCIlZytHC2OTiHLAlCR/Sin5U8pqxayRI8rJ2oGUqJWtHSGFLE0JU3OgEEvfX/ezHk/P8/xev6ve3t73vu7re/35fq97lHabjkuYhus4g/N4VdzHYSVWYz4eYwUeNMON6gCYhdsYXTv/BxfL7y8xpXb2FnNwZ1CA+O3AoY4Emn9vx9E2364KKt9NOI6xHUBp2Rac6kpkOIC06Hts7AhwAlvx30gBvu3LrgSNz+mRAqzru1yCrsHZkQCEqiexfJhB/4INePQhQ56HXzF1QBYleBK5MQhNo4Hf8EmPCPdjfeP8KRbgfv3/Jos+wh/4vHH5Dc7hLg5gcfnEbS0+K/5/FpD4D1kTYCcOtmSeID9jDKLa0Def3I8GMujKvsORNoBJZZd83AIwvrQkvE/Qfdjb0cJn+BQvmhVsRgJ0kaEKOhxA7odVYeB7LbqGhR0A2Z5fF1VnTntKFV2b4DKW1QEm4t/S4zaM/zOqHWY/fVUybe6q15iMl1UGi3C1h/PZNRfKOt6NpZhdKvqpMKl5Pe/E7xXAIDunToxB5jG0QiqALnr2DTxzCFW7GLUNxyqAUC6OXfYDHpbDSmgzkfZk0a1qubgrmhq0gii1em+j0mQ+oQgsD1IE2LShV64C+AY/9lRQP8qd7KK0qM9S1bkKIBkexhJE0X2WloR1UWubhe5XkBn81RRKSp+LL8p3gGeUtR3gCC6Wt/g5nuBv3MNNZNndqj+h7wBZQWsZPAZf3QAAAABJRU5ErkJggg==" alt=""> 
+                 @switch($publication->rent_or_sale)
+                        @case("venta")
+                           Precio: $ {{ $publication->sale_price}}
+                            @break
+
+                        @case("arriendo")
+                            Precio: $ {{ $publication->rent_price}}
+                            
+                            @break
+
+                        @default
+                            <div class="row flex-parent">
+                              <i class="im im-coin flex-child col-md-1"></i>
+                              <div class="flex-child col-md-9"><p class="h4 title text-left">{{ $publication->rent_price}}</p></div>
+                              <div class="flex-child col-md-9"><p class="h4 title text-left">{{ $publication->sale_price}}</p></div>
+                            </div>
+                    @endswitch
               </div></th>
             </tr>
           </thead>
@@ -101,22 +118,22 @@
         <div class="row flex-parent">
           <div class="card-body col-md-10">
             <h3 class="card-title">Descripción</h3>
-            <p class="h4 card-text">{{ $product->long_description }}.</p>
+            <p class="h4 card-text">{{ $publication->long_description }}.</p>
              <div class="row flex-parent card-text">
                 <div class="flex-child"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADgElEQVRIS+WVXUhbZxjH/+85jbHGJVUbJ1TnF0YT17igtLjRMduLCVtBbGUto6NlH+3dTAstwii9Whmuw0FZ3c0oo4xtFyvswpsJLaU4Vu1sEj8J2mhrVqNtjJqPY877PuWcoiTGFiv0as/Vy+F5/r/n/zznPYfhFQd7xfrIANx4580GEH3NOPbpcAk3iaGjqW/43laaSQPcanTsEZzdggxjqpgA4pDRuP/2sOdlIWsA54B7/kxnn1w6vbzjfpn5n+ttjktiZlH6qDdwriQUc8nFqlrcHJG+ch4YHJIKFeJshEkYFSRGlYdPIAnmIDA7wBwgso8fvpqnNbMGqOt303fuvyBzwtnO/Uhkb4MyHYY5mkTnD/cgGQjOT2bxe21132XD3rdTnWh562O89aquvQZ46047XTrdqwM6Lr6HaG6WDshfWsHFbg/kLIHdx0J4UGUa+Nh0qOGlAc4BN528MojakTl4nYX47YgDyYcLON4zCUdgEXkVcZQ2RcBt/HFTzomCLQEqJ8L4sqt/wz1WtIRhLlDAalQcM7aEAyxfn7EWmxqR5kBLbu/qR8VE+kxHyiwobw6jMRnSAT/KLt81g2v3lgCOkXmcuvJvmotvj9Sg3joPd2xIB4wxq+dz48G65wEq+SJ62v5IX/KqA0bA2W/+xq6ZJb1+YlcuOo/aUSaW8Wvkhg5YIWnuwPbj1vWAWnUBn8bHxb7krGT+7MnGAK3INfgIJ37y6vWXW6vgq9yhn/+M9KKo6hn4cNYhPitZZCM47H7/dHt8CFUi+sYq9LUXATQX7V13kOCE79tsIAYYINAR9eDD8oCuEWQ5CSOQXUAxSGNyxovxQkCq9VxKojUxhaPKJKyUgKjmGWLrAVGRrRZ9ETSkXbTVHWgPzVyhasxO1vsfVLYqAZhIfSbK8FxAnBsWbib2qj2xd3feVezwXfggfQe/9NVHHDQfLaLlnO1QLZpehnUGqDbCXPJ1BJMlmFGKEVwpgc9vmbqr1JaKlI/z6IX30wGR2xb9HqTGKoAThG/F9vja0kGrJ69FqJQlpeZFH01mjG1TAD5m/O/6clPk56WWmhDP10VMRRUZYpsCeHtd9/2xapM/YdsZVEuZZn9sioQAS+t2y4CGbn/GiDbq7H8M2NM9XidIchIjJwOr41w4o6EJyEz2EuBhjLwSg9dUWI7N5A2fb9b/308BvcbTKA2BUowAAAAASUVORK5CYII="></div>
                   <div class="col-md-3">
                     <p class="h4 flex-child title">Direcci&oacute;n:</p>
-                    <p class="h4"> {{$product->address}}</p>
+                    <p class="h4"> {{$publication->address}}</p>
                   </div>
             </div>
                     
                 
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago{{ $product->created_at }}</small></p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago{{ $publication->created_at }}</small></p>
           </div>
           <div class="col-md-2 flex-child">
             <button class="btn btn-primary btn-round" data-toggle="modal" 
               data-target="#modalAddToCart">
-              <i class="material-icons">add</i> Agendar cita
+              <i class="im im-calendar"></i>Agendar cita
             </button>
           </div>
         </div>{{--row--}}
@@ -143,7 +160,7 @@
       <form action="{{ url('/cart')}}" method="post">
         @csrf
         <div class="modal-body">
-          <input type="hidden" name="product_id" value="{{ $product->id }}">
+          <input type="hidden" name="product_id" value="{{ $publication->id }}">
           <input type="number" name="quantity" value="1" class="form-control">
         </div>
         <div class="modal-footer">

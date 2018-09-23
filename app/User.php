@@ -27,10 +27,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function publications()
+    {
+        return $this->belongsToMany('App\Publication','favorite')
+                ->withTimestamps();
+;
+    }
+
+
      //cart_id
     public function carts(){
         return $this ->hasMany(Cart::class);
     }
+        
 
     public function getCartAttribute(){
         $cart = $this->carts()->where('status','Active')->first();

@@ -1,9 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Product;
+use App\Publication;
 
-$factory->define(Product::class, function (Faker $faker) {
+$factory->define(Publication::class, function (Faker $faker) {
     return [
         'title'=>'Aprovecha esta hermosa casa de oportunidad',
         //substr($faker->sentence(3), 0,-1),
@@ -15,9 +15,10 @@ $factory->define(Product::class, function (Faker $faker) {
 	    'description'=>$faker->sentence(10),
 	    'long_description'=>$faker->text,
 	    'address'=>'Avenida Siempreviva #7-42',
-	    'rent_or_sale'=>'venta',
-	    'price'=>$faker->numberBetween(100000,3500000),
+	    'rent_or_sale'=>$faker->randomElement(['venta' ,'arriendo']),
+	    'rent_price'=>$faker->numberBetween(100000,8000000),
+	    'sale_price'=>$faker->numberBetween(10,1000),//multip*1000 en la vista
 
-	    'category_id'=> $faker->numberBetween(1,5)
+	    'type_id'=> $faker->numberBetween(1,5)
     ];
 });

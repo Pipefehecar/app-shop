@@ -60,7 +60,7 @@
             
                 <a  class="dropdown-item" href="{{url('/home')}}">dashboard</a>
               
-              @if(auth()->user()->admin)
+              @if(auth()->user()->role =="admin")
                 <a class="dropdown-item" href="{{ url('/admin/products') }}">
                     Gestionar productos
                 </a>

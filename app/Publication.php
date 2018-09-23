@@ -4,16 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Publication extends Model
 {
-    //$product->category
-    public function category(){
-    	return $this->belongsTo(Category::class);
+    //$publication->category
+    public function type(){
+    	return $this->belongsTo(Type::class);
     }
-    // $product->images
+    // $publication->images
     public function images(){
-    	return $this->hasMany(ProductImage::class);
+    	return $this->hasMany(PublicationImage::class);
     }
+    public function users()
+    {
+        return $this->belongsToMany('App\User','favorite')
+                ->withTimestamps();
+    }
+
 
     public function getFeaturedImageUrlAttribute(){
     	$featuredImage = $this->images()->where('featured',true)->first();
@@ -25,6 +31,6 @@ class Product extends Model
     	}
 
     	//default
-    	return '/images/products/default.gif';
+    	return '/images/publication/default.gif';
     }
 }

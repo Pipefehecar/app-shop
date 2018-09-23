@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use App\Publication;
 class TestController extends Controller
 {
 	public function welcome()
 	{
-		$products = Product::paginate(9);
-		return view('welcome')->with(compact('products')); 
+		$publications = Publication::paginate(9);
+		return view('welcome')->with(compact('publications')); 
 	}
     
     public function contact()
